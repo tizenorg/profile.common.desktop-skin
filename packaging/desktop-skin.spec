@@ -1,4 +1,4 @@
-%define USERHOME	%{USERHOME}
+%define USERHOME	/home/app
 
 Name:		desktop-skin
 Summary:	Provides desktop-skin.
