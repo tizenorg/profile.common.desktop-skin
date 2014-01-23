@@ -21,20 +21,12 @@ Provides desktop-skin.
 %build
 
 %install
-
 mkdir -p %{buildroot}%{_bindir}
-%ifarch == x86_64
-mkdir -p %{buildroot}%{_libdir}/alsa
-install -m 644 Sound/asound.state %{buildroot}%{_libdir}/alsa
-install -m 755 Sound/alsamixer %{buildroot}%{_bindir}
-%endif
-
 install -m 755 Script/launch_cam.sh %{buildroot}%{_bindir}
 install -m 755 Script/launch_video.sh %{buildroot}%{_bindir}
 
 mkdir -p %{buildroot}%{USERHOME}
 install -m 644 Video/AmazingNature_480p.mp4 %{buildroot}%{USERHOME}
-
 
 mkdir -p %{buildroot}%{USERHOME}/Photos
 install -m 644 Photos/* %{buildroot}%{USERHOME}/Photos
@@ -52,11 +44,6 @@ install -m 644 weston/weston.ini %{buildroot}%{_sysconfdir}/xdg/weston
 chown -R app:app %{USERHOME}
 
 %files
-%ifarch == x86_64
-%{_libdir}/alsa/asound.state
-%{_bindir}/alsamixer
-%endif
-
 %{_bindir}/launch_cam.sh
 %{_bindir}/launch_video.sh
 
