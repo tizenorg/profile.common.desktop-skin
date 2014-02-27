@@ -37,9 +37,6 @@ install -m 644 icons/tizen/32x32/* %{buildroot}%{_datadir}/icons/tizen/32x32
 mkdir -p %{buildroot}%{_datadir}/backgrounds/tizen
 install -m 644  backgrounds/tizen/golfe-morbihan.jpg %{buildroot}%{_datadir}/backgrounds/tizen/golfe-morbihan.jpg
 
-mkdir -p %{buildroot}%{_sysconfdir}/xdg/weston
-install -m 644 weston/weston.ini %{buildroot}%{_sysconfdir}/xdg/weston
-
 %post
 chown -R app:app %{USERHOME}
 
@@ -54,5 +51,3 @@ chown -R app:app %{USERHOME}
 %{_datadir}/icons/tizen/32x32/*
 
 %{_datadir}/backgrounds/tizen/golfe-morbihan.jpg
-
-%{_sysconfdir}/xdg/weston/weston.ini
