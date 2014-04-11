@@ -1,0 +1,156 @@
+#!/bin/bash
+
+# Helper script to activate/desactivate WLAN from command line
+
+# Usage :
+# wifi connect <ssid> <passphrase>
+# wifi disconnect <ssid> 
+
+#####################################################
+
+### global vars ###
+
+script=$(basename $0)
+configpath=/var/lib/connman # connman config directory
+ssid="" 	# ssid of wifi network to reach 
+passphrase="" 	# passphrase of wifi network to reach 
+service=""	# service identifier of the network service to reach 
+fullservice=""	# <ssid><service>
+
+function error() {
+
+        echo ERROR: "$@" >&2
+        echo "Usage: $script connect <ssid> <passphrase>" >&2
+        echo "Usage: $script disconnect <ssid>" >&2
+        exit 1
+}
+
+function wifi_enable() {
+
+command=$(connmanctl technologies | grep -A 4 wifi | sed -n '4p')
+
+if [[ $command == *True ]]
+then
+        echo ">>> Wifi is already enabled ... Ok"
+else
+        echo ">>> Enabling wifi ..."
+        command=$(connmanctl enable wifi)
+        if [[ $command == Enabled* ]] 
+        then  
+                echo $command
+        else 
+                echo ">>> Cannot enable wifi !"
+                exit 1
+        fi
+fi
+
+}
+
+function wifi_scan() {
+	
+echo -e "\n>>> Scanning for available wifi networks..."
+connmanctl scan wifi
+connmanctl scan wifi
+
+}
+
+function wifi_status() {
+command=$(connmanctl technologies | grep -A 5 wifi | sed -n '4p')
+
+if [[ $command == *True ]]
+then
+        echo -e "\n>>> Already connected to a wifi network"
+	exit 0
+fi
+
+}
+
+function wifi_config() {
+
+echo -e "\n>>> Setting up wifi connection..."
+fullservice=$(connmanctl services | cut -c 5- | sed 's/ \+ /:/g' | grep $ssid:)
+
+if [[ -n $fullservice ]]
+        then
+                echo "Target ssid found - config is :"
+        else
+                echo "Target ssid not found !"
+                exit 1
+fi
+
+ssid=$(echo "$fullservice" | awk -F: '{print $1}')
+service=$(echo "$fullservice" | awk -F: '{print $2}')
+
+echo "SSID       : $ssid"
+echo "Service Id : $service"
+echo "Passphrase : $passphrase"
+
+printf "[service_$service]
+Name = $ssid
+Type = wifi
+Passphrase = $passphrase
+"> $configpath/$ssid.config
+
+
+
+echo "Configuration writed"
+
+}
+
+function wifi_connect() {
+
+echo -e "\n>>> Performing connection ..."
+output=$(/usr/sbin/connmanctl connect $service)
+
+if [[ $output == Connected* ]]
+then
+        echo "...Ok."
+        echo $output
+else
+        echo "...connection failed !"
+        echo $output
+	rm -rf $configpath/$ssid.config
+	echo "Check your SSID or your passphrase"
+        exit 1
+fi
+
+}
+
+function wifi_disconnect() {
+
+service=$(/usr/sbin/connmanctl services | cut -c 5- | sed 's/ \+ /:/g' | grep $ssid: | awk -F: '{print $2}')		
+output=$(/usr/sbin/connmanctl disconnect $service)
+
+if [[ $output == Disconnected* ]]
+then
+        echo "...Ok."
+        echo $output
+	rm -rf /var/lib/connman/$ssid.config
+			
+else
+        echo "...disconnection failed !"
+        echo $output
+        exit 1
+fi
+}
+
+case $1 in
+	connect)
+		ssid=$2
+	 	passphrase=$3	
+		[ -z "$ssid" ] && error "No ssid defined !"
+		[ -z "$passphrase" ] && error "No passphrase definedi !"
+		wifi_enable
+		wifi_scan
+		wifi_status
+		wifi_config
+		wifi_connect
+	;;
+	disconnect)
+		ssid=$2	
+		[ -z "$ssid" ] && error "No ssid defined !"
+		wifi_disconnect
+	;;
+	*)
+		error "Command line doesn't have any option !"
+esac

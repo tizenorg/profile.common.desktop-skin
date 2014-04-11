@@ -22,6 +22,7 @@ Provides desktop visuals and test programs
 mkdir -p %{buildroot}%{_bindir}
 install -m 755 Script/launch_cam.sh %{buildroot}%{_bindir}
 install -m 755 Script/launch_video.sh %{buildroot}%{_bindir}
+install -m 755 Script/wifi %{buildroot}%{_bindir}
 
 mkdir -p %{buildroot}%{_datadir}/media/videos
 install -m 644 Video/AmazingNature_480p.mp4 %{buildroot}%{_datadir}/media/videos
@@ -39,8 +40,7 @@ mkdir -p %{buildroot}%{_datadir}/backgrounds/tizen
 install -m 644  backgrounds/tizen/golfe-morbihan.jpg %{buildroot}%{_datadir}/backgrounds/tizen/golfe-morbihan.jpg
 
 %files
-%{_bindir}/launch_cam.sh
-%{_bindir}/launch_video.sh
+%{_bindir}/*
 
 %{_datadir}/media/videos/AmazingNature_480p.mp4
 %{_datadir}/media/photos/*
