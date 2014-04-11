@@ -34,6 +34,9 @@ install -m 644 Photos/* %{buildroot}%{USERHOME}/Photos
 mkdir -p %{buildroot}%{_datadir}/icons/tizen/32x32
 install -m 644 icons/tizen/32x32/* %{buildroot}%{_datadir}/icons/tizen/32x32
 
+mkdir -p %{buildroot}%{_datadir}/applications/tizen
+install -m 644 applications/tizen/* %{buildroot}%{_datadir}/applications/tizen
+
 mkdir -p %{buildroot}%{_datadir}/backgrounds/tizen
 install -m 644  backgrounds/tizen/golfe-morbihan.jpg %{buildroot}%{_datadir}/backgrounds/tizen/golfe-morbihan.jpg
 
@@ -49,5 +52,7 @@ chown -R app:app %{USERHOME}
 %{USERHOME}/Photos/*
 
 %{_datadir}/icons/tizen/32x32/*
+
+%{_datadir}/applications/tizen/*
 
 %{_datadir}/backgrounds/tizen/golfe-morbihan.jpg

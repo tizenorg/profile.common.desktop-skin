@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Weston Terminal
+Type=Application
+Exec=/usr/bin/weston-terminal
+Icon=/usr/share/icons/tizen/32x32/terminal.png

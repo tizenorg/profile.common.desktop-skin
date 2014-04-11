@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Calculator
+Type=Application
+Exec=/usr/apps/org.tizen.calculator/bin/calculator
+Icon=/usr/share/icons/tizen/32x32/calculator.png

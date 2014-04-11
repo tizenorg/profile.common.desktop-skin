@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Video
+Type=Application
+Exec=/usr/bin/launch_video.sh
+Icon=/usr/share/icons/tizen/32x32/video.png
