@@ -38,6 +38,7 @@ install -m 644 applications/tizen/* %{buildroot}%{_datadir}/applications/tizen
 
 mkdir -p %{buildroot}%{_datadir}/backgrounds/tizen
 install -m 644  backgrounds/tizen/golfe-morbihan.jpg %{buildroot}%{_datadir}/backgrounds/tizen/golfe-morbihan.jpg
+install -m 644  backgrounds/tizen/tizen_common.png %{buildroot}%{_datadir}/backgrounds/tizen/tizen_common.png
 
 %files
 %{_bindir}/*
@@ -46,4 +47,4 @@ install -m 644  backgrounds/tizen/golfe-morbihan.jpg %{buildroot}%{_datadir}/bac
 %{_datadir}/media/photos/*
 %{_datadir}/icons/tizen/32x32/*
 %{_datadir}/applications/tizen/*
-%{_datadir}/backgrounds/tizen/golfe-morbihan.jpg
+%{_datadir}/backgrounds/tizen/*
