@@ -12,7 +12,7 @@ alreadyrunning=`cat $HOME/gstvid-pid`
 #URL=http://intel07.vannes/~sdx/Videos/caminandes_480p.avi
 URL=file:///usr/share/media/videos/AmazingNature_480p.mp4
 
-if [ $(echo $alreadyrunning | wc -w) -lt 8  ] ; then
+if [ $(echo $alreadyrunning | wc -w) -lt 3  ] ; then
     echo "create new"
     gst-launch-1.0 playbin uri=$URL &
     echo $!  >> $HOME/gstvid-pid
