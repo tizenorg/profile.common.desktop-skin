@@ -40,9 +40,11 @@ mkdir -p %{buildroot}%{_datadir}/backgrounds/tizen
 install -m 644  backgrounds/tizen/golfe-morbihan.jpg %{buildroot}%{_datadir}/backgrounds/tizen/golfe-morbihan.jpg
 install -m 644  backgrounds/tizen/tizen_common.png %{buildroot}%{_datadir}/backgrounds/tizen/tizen_common.png
 
+%post
+ln -s tizen_common.png %{_datadir}/backgrounds/tizen/current
+
 %files
 %{_bindir}/*
-
 %{_datadir}/media/videos/AmazingNature_480p.mp4
 %{_datadir}/media/photos/*
 %{_datadir}/icons/tizen/32x32/*
