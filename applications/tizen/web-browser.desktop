@@ -1,5 +1,5 @@
 [Desktop Entry]
 Name=Web Browser
 Type=Application
-Exec=/usr/lib64/xwalk/xwalk http://www.google.com
+Exec=xwalk http://www.google.com
 Icon=/usr/share/icons/tizen/32x32/web-browser.png
