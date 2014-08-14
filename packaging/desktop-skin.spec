@@ -44,7 +44,7 @@ install -m 644  backgrounds/tizen/golfe-morbihan.jpg %{buildroot}%{_datadir}/bac
 install -m 644  backgrounds/tizen/tizen_common.png %{buildroot}%{_datadir}/backgrounds/tizen/tizen_common.png
 
 %post
-ln -s tizen_common.png %{_datadir}/backgrounds/tizen/current
+ln -sf tizen_common.png %{_datadir}/backgrounds/tizen/current
 
 %files
 %{_bindir}/*
