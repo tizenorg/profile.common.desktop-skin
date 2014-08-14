@@ -6,6 +6,8 @@ License:    GPL-2.0+
 Release: 	1
 Source0:        %{name}-%{version}.tar.gz
 
+Requires:       python-cairo
+
 %description
 Provides desktop visuals and test programs
 - desktop background
@@ -22,6 +24,7 @@ Provides desktop visuals and test programs
 mkdir -p %{buildroot}%{_bindir}
 install -m 755 Script/launch_cam.sh %{buildroot}%{_bindir}
 install -m 755 Script/launch_video.sh %{buildroot}%{_bindir}
+install -m 755 Script/mark_image.py %{buildroot}%{_bindir}
 install -m 755 Script/wifi %{buildroot}%{_bindir}
 
 mkdir -p %{buildroot}%{_datadir}/media/videos
