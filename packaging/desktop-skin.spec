@@ -1,12 +1,15 @@
-Name:		desktop-skin
-Summary:	Desktop skin for Tizen:Common
-Version: 	2.0
-Group: 		Applications/Multimedia
-License:    GPL-2.0+
-Release: 	1
+Name:           desktop-skin
+Summary:        Desktop skin for Tizen:Common
+Version:        2.0
+Group:          Applications/Multimedia
+License:        GPL-2.0+
+Release:        0
 Source0:        %{name}-%{version}.tar.gz
+Source1001:     %{name}.manifest
 
 Requires:       python-cairo
+
+BuildArchitectures: noarch
 
 %description
 Provides desktop visuals and test programs
@@ -17,6 +20,7 @@ Provides desktop visuals and test programs
 
 %prep
 %setup -q
+cp %{SOURCE1001} .
 
 %build
 
@@ -47,6 +51,7 @@ install -m 644  backgrounds/tizen/tizen_common.png %{buildroot}%{_datadir}/backg
 ln -sf tizen_common.png %{_datadir}/backgrounds/tizen/current
 
 %files
+%manifest %{name}.manifest
 %{_bindir}/*
 %{_datadir}/media/videos/AmazingNature_480p.mp4
 %{_datadir}/media/photos/*
