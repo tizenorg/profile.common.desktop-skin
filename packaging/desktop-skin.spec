@@ -44,11 +44,10 @@ mkdir -p %{buildroot}%{_datadir}/applications/tizen
 install -m 644 applications/tizen/* %{buildroot}%{_datadir}/applications/tizen
 
 mkdir -p %{buildroot}%{_datadir}/backgrounds/tizen
-install -m 644  backgrounds/tizen/golfe-morbihan.jpg %{buildroot}%{_datadir}/backgrounds/tizen/golfe-morbihan.jpg
-install -m 644  backgrounds/tizen/tizen_common.png %{buildroot}%{_datadir}/backgrounds/tizen/tizen_common.png
+install -m 644  backgrounds/tizen/tizen_common_3.0.png %{buildroot}%{_datadir}/backgrounds/tizen/tizen_common_3.0.png
 
 %post
-ln -sf tizen_common.png %{_datadir}/backgrounds/tizen/current
+ln -sf tizen_common_3.0.png %{_datadir}/backgrounds/tizen/current
 
 %files
 %manifest %{name}.manifest

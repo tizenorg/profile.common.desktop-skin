@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Video2
+Type=Application
+Exec=/usr/bin/launch_video2.sh
+Icon=/usr/share/icons/tizen/32x32/lama.png
