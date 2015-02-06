@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Caminandes
+Type=Application
+Exec=/usr/bin/launch_video2.sh
+Icon=/usr/share/icons/tizen/32x32/caminandes.png
