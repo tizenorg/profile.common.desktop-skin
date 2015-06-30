@@ -1,5 +1,5 @@
 [Desktop Entry]
 Name=WebGL Test
 Type=Application
-Exec=xwalk-launcher http://www.deadliners.net/68000Reasons/
+Exec=xwalk-launcher https://www.chromeexperiments.com/webgl
 Icon=/usr/share/icons/tizen/32x32/webgl.png
